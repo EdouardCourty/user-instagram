@@ -1,0 +1,53 @@
+const cheerio = require("cheerio")
+
+function getData(body) {
+  var $ = cheerio.load(body)
+  
+  var scripts = $("script[type='text/javascript']")
+  var sharedData = JSON.parse(
+    scripts[3].children[0].data
+    .replace("window._sharedData = ", "")
+    .replace(";", "")
+    )
+    
+  var graphql = sharedData.entry_data.ProfilePage[0].graphql.user
+    
+  return {
+    "profileLink": "https://www.instagram.com/".concat(graphql.username),
+    "subscriberCount": graphql.edge_followed_by.count,
+    "subscribtions": graphql.edge_follow.count,
+    "postCount": graphql.edge_owner_to_timeline_media.count,
+    "username": graphql.username,
+    "isPrivate": graphql.is_private,
+    "isVerified": graphql.is_verified,
+    "fullName": graphql.full_name,
+    "bio": graphql.biography,
+    "id": graphql.id,
+    "postCount": graphql.edge_owner_to_timeline_media.count,
+    "avatar": graphql.profile_pic_url,
+    "avatarHD": graphql.profile_pic_url_hd,
+    "posts": graphql.edge_owner_to_timeline_media.edges.map(edge => {
+      return {
+        "id": edge.node.id,
+        "captionText": edge.node.edge_media_to_caption.edges[0].node.text,
+        "shortcode": edge.node.shortcode,
+        "link": `https://www.instagram.com/p/${edge.node.shortcode}`,
+        "commentsCount": edge.node.edge_media_to_comment.count,
+        "timestamp": edge.node.taken_at_timestamp,
+        "likes": edge.node.edge_liked_by.count,
+        "location": edge.node.location || null,
+        "picture": {
+          "url": edge.node.thumbnail_src,
+          "thumbnail_150": edge.node.thumbnail_resources[0].src,
+          "thumbnail_240": edge.node.thumbnail_resources[1].src,
+          "thumbnail_320": edge.node.thumbnail_resources[2].src,
+          "thumbnail_480": edge.node.thumbnail_resources[3].src,
+          "thumbnail_640": edge.node.thumbnail_resources[4].src
+        },
+        "idVideo": edge.node.is_video
+      }
+    })
+  }
+}
+
+module.exports = { getData }

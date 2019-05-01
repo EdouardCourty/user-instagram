@@ -1,0 +1,24 @@
+{
+  "name": "user-instagram",
+  "version": "1.0.0",
+  "description": "Get user data and feed by scraping Instagram's user page. No need for O-Auth or API.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Instagram",
+    "API",
+    "Scrape",
+    "Instagram",
+    "scraper",
+    "webscraping"
+  ],
+  "author": "Edouard Courty",
+  "license": "MIT",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.3",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.4"
+  }
+}
