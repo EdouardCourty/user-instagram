@@ -1,6 +1,6 @@
 {
   "name": "user-instagram",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Get user data and feed by scraping Instagram's user page. No need for O-Auth or API.",
   "main": "index.js",
   "scripts": {
