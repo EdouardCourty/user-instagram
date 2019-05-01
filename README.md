@@ -1,5 +1,5 @@
 # Node-Instagram
-[![NPM](https://nodei.co/npm/user-instagram.png)](https://nodei.co/npm/user-instagram)
+[![NPM](https://nodei.co/npm/user-instagram.png)](https://nodei.co/npm/user-instagram)  
 This module allow you to get user data from instagram link.  
 <b>Example:</b>
 ```js
