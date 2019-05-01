@@ -14,6 +14,7 @@ instagram("https://www.instagram.com/edouard_courty")
 })
 ```
 
-If you have questions or if you want to make a request, please use github.
+This module only uses ES6 Promises.
+By the future, i'll update this module to add methods.
 
 [Creator's website](https://edouard-courty.fr)
