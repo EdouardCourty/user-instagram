@@ -29,7 +29,7 @@ function getData(body) {
     "posts": graphql.edge_owner_to_timeline_media.edges.map(edge => {
       return {
         "id": edge.node.id,
-        "captionText": edge.node.edge_media_to_caption.edges[0].node.text,
+        "captionText": edge.node.edge_media_to_caption.edges.length === 0 ? null : edge.node.edge_media_to_caption.edges[0].node.text,
         "shortcode": edge.node.shortcode,
         "link": `https://www.instagram.com/p/${edge.node.shortcode}`,
         "commentsCount": edge.node.edge_media_to_comment.count,
