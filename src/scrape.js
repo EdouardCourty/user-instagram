@@ -7,7 +7,7 @@ function getData(body) {
   var sharedData = JSON.parse(
     scripts[3].children[0].data
     .replace("window._sharedData = ", "")
-    .replace(";", "")
+    .replace("};", "}")
     )
     
   var graphql = sharedData.entry_data.ProfilePage[0].graphql.user
@@ -44,7 +44,7 @@ function getData(body) {
           "thumbnail_480": edge.node.thumbnail_resources[3].src,
           "thumbnail_640": edge.node.thumbnail_resources[4].src
         },
-        "idVideo": edge.node.is_video
+        "isVideo": edge.node.is_video
       }
     })
   }
