@@ -44,7 +44,6 @@ The output will look like the following:
   posts: []
 }
 ```
-
 This module uses ES6 Promises.
 
 © 2020 - Edouard Courty
