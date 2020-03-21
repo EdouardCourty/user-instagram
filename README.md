@@ -29,19 +29,19 @@ getInstaProfile("edouard_courty")
 The output will look like the following:
 ```json
 {
-  profileLink: 'https://www.instagram.com/edouard_courty',
-  subscriberCount: 444,
-  subscribtions: 362,
-  postCount: 27,
-  username: 'edouard_courty',
-  isPrivate: false,
-  isVerified: false,
-  fullName: 'Edouard Courty',
-  bio: "<userBio",
-  id: '<userId>',
-  avatar: <avatarThumbnailLink>,
-  avatarHD: <HDAvatarLink>,
-  posts: []
+  "profileLink": "https://www.instagram.com/edouard_courty",
+  "subscriberCount": 444,
+  "subscribtions": 362,
+  "postCount": 27,
+  "username": "edouard_courty",
+  "isPrivate": false,
+  "isVerified": false,
+  "fullName": "Edouard Courty",
+  "bio": "<userBio",
+  "id": "<userId>",
+  "avatar": "<avatarThumbnailLink>",
+  "avatarHD": "<HDAvatarLink>",
+  "posts": []
 }
 ```
 This module uses ES6 Promises.
