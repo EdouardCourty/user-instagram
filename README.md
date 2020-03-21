@@ -40,8 +40,9 @@ The output will look like the following:
   bio: "<userBio",
   id: '<userId>',
   avatar: <avatarThumbnailLink>,
-  "avatarHD": <HDAvatarLink>
+  avatarHD: <HDAvatarLink>,
   posts: []
+}
 ```
 
 This module uses ES6 Promises.
