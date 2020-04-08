@@ -1,4 +1,4 @@
-# Node-Instagram
+# User-Instagram
 [![NPM](https://nodei.co/npm/user-instagram.png)](https://nodei.co/npm/user-instagram)  
 
 ## Introduction
