@@ -12,7 +12,7 @@ module.exports = (username) => {
     const GQL = await axios.get(link);
     let user = GQL.data.graphql.user;
     resolve(JSON.stringify({
-      link: link,
+      link: link.replace("/?__a=1", ""),
       id: user.id,
       biography: user.biography,
       subscribersCount: user.edge_followed_by.count,
