@@ -30,14 +30,13 @@ The output will look like the following:
   "biography": "<Biography>",
   "subscriberCount": 444,
   "subscribtions": 362,
-  "postCount": 27,
+  "postsCount": 27,
   "fullName": "Edouard Courty",
   "username": "edouard_courty",
   "isPrivate": false,
   "isVerified": false,
   "profilePic": "<ProfilePicThumbnailLink>",
   "profilePicHD": "<HDProfilePicLink>",
-  "postsCount": 27,
   "posts": []
 }
 ```
