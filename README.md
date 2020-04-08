@@ -1,4 +1,6 @@
 # User-Instagram
+![npm](https://img.shields.io/npm/dt/user-instagram) ![David](https://img.shields.io/david/EdouardCourty/user-instagram)
+<br>
 [![NPM](https://nodei.co/npm/user-instagram.png)](https://nodei.co/npm/user-instagram)  
 
 ## Introduction
