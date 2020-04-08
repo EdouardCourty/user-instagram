@@ -1,6 +1,6 @@
-const handle = require("./src/handle");
+const handle = require("./src/scrape");
 
 /**
- * @param profileInfo { String }
+ * @param username { String }
  */
 module.exports = handle;

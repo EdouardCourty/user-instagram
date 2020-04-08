@@ -1,56 +1,52 @@
-const cheerio = require("cheerio");
+const axios = require("axios");
+const { normalizeUrl } = require("../src/util");
 
-module.exports = body => {
-  return new Promise((resolve, reject) => {
-    let $ = cheerio.load(body);
-
-    let scripts = $("script[type='text/javascript']"), graphql;
-    try {
-      graphql = JSON.parse(
-        scripts[3].children[0].data
-          .replace("window._sharedData = ", "")
-          .replace("};", "}")
-      ).entry_data.ProfilePage[0].graphql.user;
-    } catch (e) {
-      return reject(e)
-    }
-
-    return resolve({
-      "profileLink": "https://www.instagram.com/".concat(graphql.username),
-      "subscriberCount": graphql.edge_followed_by.count,
-      "subscribtions": graphql.edge_follow.count,
-      "postCount": graphql.edge_owner_to_timeline_media.count,
-      "username": graphql.username,
-      "isPrivate": graphql.is_private,
-      "isVerified": graphql.is_verified,
-      "fullName": graphql.full_name,
-      "bio": graphql.biography,
-      "id": graphql.id,
-      "avatar": graphql.profile_pic_url,
-      "avatarHD": graphql.profile_pic_url_hd,
-      "posts": graphql.edge_owner_to_timeline_media.edges.map(edge => {
+module.exports = username => {
+  return new Promise(async resolve => {
+    let link = normalizeUrl(username);
+    const GQL = await axios.get(link);
+    let user = GQL.data.graphql.user;
+    resolve(JSON.stringify({
+      link: link,
+      id: user.id,
+      biography: user.biography,
+      subscribersCount: user.edge_followed_by.count,
+      subscribtions: user.edge_follow.count,
+      fullName: user.full_name,
+      highlightCount: user.highlight_reel_count,
+      isBusinessAccount: user.is_business_account,
+      isRecentUser: user.is_joined_recently,
+      accountCategory: user.business_category_name,
+      isPrivate: user.is_private,
+      isVerified: user.is_verified,
+      profilePic: user.profile_pic_url,
+      profilePicHD: user.profile_pic_url_hd,
+      username: user.username,
+      postsCount: user.edge_owner_to_timeline_media.count,
+      posts: user.edge_owner_to_timeline_media.edges.map(edge => {
         return {
-          "id": edge.node.id,
-          "captionText": edge.node.edge_media_to_caption.edges.length === 0
-            ? null
-            : edge.node.edge_media_to_caption.edges[0].node.text,
-          "shortcode": edge.node.shortcode,
-          "link": `https://www.instagram.com/p/${edge.node.shortcode}`,
-          "commentsCount": edge.node.edge_media_to_comment.count,
-          "timestamp": edge.node.taken_at_timestamp,
-          "likes": edge.node.edge_liked_by.count,
-          "location": edge.node.location || null,
-          "picture": {
-            "url": edge.node.thumbnail_src,
-            "thumbnail_150": edge.node.thumbnail_resources[0].src,
-            "thumbnail_240": edge.node.thumbnail_resources[1].src,
-            "thumbnail_320": edge.node.thumbnail_resources[2].src,
-            "thumbnail_480": edge.node.thumbnail_resources[3].src,
-            "thumbnail_640": edge.node.thumbnail_resources[4].src
-          },
-          "isVideo": edge.node.is_video
+          id: edge.node.id,
+          shortCode: edge.node.shortcode,
+          dimensions: edge.node.dimensions,
+          imageUrl: edge.node.display_url,
+          isVideo: edge.node.is_video,
+          caption: edge.node.edge_media_to_caption.edges[0].node.text,
+          commentsCount: edge.node.edge_media_to_comment.count,
+          commentsDisabled: edge.node.comments_disabled,
+          timestamp: edge.node.taken_at_timestamp,
+          likesCount: edge.node.edge_liked_by.count,
+          location: edge.node.location,
+          childs: edge.node.edge_sidecar_to_children ? edge.node.edge_sidecar_to_children.edges.map(edge => {
+            return {
+              id: edge.node.id,
+              shortCode: edge.node.shortcode,
+              dimensions: edge.node.dimensions,
+              imageUrl: edge.node.display_url,
+              isVideo: edge.node.is_video,
+            }
+          }) : []
         }
-      })
-    })
-  })
+      }) || []
+    }));
+  });
 };

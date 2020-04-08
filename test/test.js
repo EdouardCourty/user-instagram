@@ -1,5 +1,3 @@
-const scrape = require("../index");
-
-scrape("edouard_courty")
+require("../index")("edouard_courty")
   .then(console.log)
   .catch(console.error);
