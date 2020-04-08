@@ -6,7 +6,7 @@ module.exports = {
    */
   normalizeUrl : string => {
     if (!string.match(/instagram\.com\/[^\/]*/)) {
-      string = `https://instagram.com/${string}`;
+      string = `https://www.instagram.com/${string}`;
     }
     return string += "/?__a=1";
   }
