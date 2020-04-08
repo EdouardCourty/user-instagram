@@ -6,8 +6,8 @@ const { normalizeUrl } = require("../src/util");
  * @param { string } username
  * @return { Promise<Object> }
  */
-module.exports = username => {
-  return new Promise(async resolve => {
+module.exports = (username) => {
+  return new Promise(async (resolve) => {
     let link = normalizeUrl(username);
     const GQL = await axios.get(link);
     let user = GQL.data.graphql.user;

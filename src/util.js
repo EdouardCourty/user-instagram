@@ -4,7 +4,7 @@ module.exports = {
    * @param string
    * @return string
    */
-  normalizeUrl : string => {
+  normalizeUrl: (string) => {
     if (!string.match(/instagram\.com\/[^\/]*/)) {
       string = `https://www.instagram.com/${string}`;
     }
