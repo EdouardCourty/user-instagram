@@ -1,6 +1,11 @@
 const axios = require("axios");
 const { normalizeUrl } = require("../src/util");
 
+/**
+ * Gets the data from the GraphQL Instagram interface.
+ * @param { string } username
+ * @return { Promise<Object> }
+ */
 module.exports = username => {
   return new Promise(async resolve => {
     let link = normalizeUrl(username);
@@ -27,6 +32,7 @@ module.exports = username => {
         return {
           id: edge.node.id,
           shortCode: edge.node.shortcode,
+          url: `https://www.instagram.com/p/${edge.node.shortcode}/`,
           dimensions: edge.node.dimensions,
           imageUrl: edge.node.display_url,
           isVideo: edge.node.is_video,
