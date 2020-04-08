@@ -11,13 +11,11 @@ npm install user-instagram
 ## Usage
 
 I tried to make this module user-friendly as much as I could. Just provide a username or a profile link.
-  > edouard_courty  
-  > https://www.instagram.com/edouard_courty
-
+  
 ```js
-const getInstaProfile = require("user-instagram");
+const userInstagram = require("user-instagram");
 
-getInstaProfile("edouard_courty")
+userInstagram("edouard_courty")
   .then(console.log)
   .catch(console.error);
 ```
