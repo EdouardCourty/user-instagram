@@ -18,9 +18,7 @@ I tried to make this module user-friendly as much as I could. Just provide a use
 const getInstaProfile = require("user-instagram");
 
 getInstaProfile("edouard_courty")
-  .then(userData => {
-    console.log(userData.user)
-  })
+  .then(console.log)
   .catch(console.error);
 ```
 
@@ -29,18 +27,19 @@ getInstaProfile("edouard_courty")
 The output will look like the following:
 ```json
 {
+  "id": "<userId>",
   "profileLink": "https://www.instagram.com/edouard_courty",
+  "biography": "<Biography>",
   "subscriberCount": 444,
   "subscribtions": 362,
   "postCount": 27,
+  "fullName": "Edouard Courty",
   "username": "edouard_courty",
   "isPrivate": false,
   "isVerified": false,
-  "fullName": "Edouard Courty",
-  "bio": "<userBio",
-  "id": "<userId>",
-  "avatar": "<avatarThumbnailLink>",
-  "avatarHD": "<HDAvatarLink>",
+  "profilePic": "<ProfilePicThumbnailLink>",
+  "profilePicHD": "<HDProfilePicLink>",
+  "postsCount": 27,
   "posts": []
 }
 ```
