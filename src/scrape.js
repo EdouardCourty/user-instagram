@@ -11,7 +11,7 @@ module.exports = (username) => {
     let link = normalizeUrl(username);
     const GQL = await axios.get(link);
     let user = GQL.data.graphql.user;
-    resolve(JSON.stringify({
+    resolve({
       link: link.replace("/?__a=1", ""),
       id: user.id,
       biography: user.biography,
@@ -53,6 +53,6 @@ module.exports = (username) => {
           }) : []
         }
       }) || []
-    }));
+    });
   });
 };
