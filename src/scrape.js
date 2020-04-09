@@ -29,6 +29,7 @@ module.exports = (username) => {
       username: user.username,
       postsCount: user.edge_owner_to_timeline_media.count,
       posts: user.edge_owner_to_timeline_media.edges.map(edge => {
+        let hasCaption = edge.node.edge_media_to_caption.edges[0];
         return {
           id: edge.node.id,
           shortCode: edge.node.shortcode,
@@ -36,7 +37,7 @@ module.exports = (username) => {
           dimensions: edge.node.dimensions,
           imageUrl: edge.node.display_url,
           isVideo: edge.node.is_video,
-          caption: edge.node.edge_media_to_caption.edges[0].node.text,
+          caption: hasCaption ? hasCaption.node.text : "",
           commentsCount: edge.node.edge_media_to_comment.count,
           commentsDisabled: edge.node.comments_disabled,
           timestamp: edge.node.taken_at_timestamp,
