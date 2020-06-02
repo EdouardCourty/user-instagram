@@ -47,7 +47,7 @@ module.exports = (username) => {
                     timestamp: edge.node.taken_at_timestamp,
                     likesCount: edge.node.edge_liked_by.count,
                     location: edge.node.location,
-                    childs: edge.node.edge_sidecar_to_children ? edge.node.edge_sidecar_to_children.edges.map(edge => {
+                    children: edge.node.edge_sidecar_to_children ? edge.node.edge_sidecar_to_children.edges.map(edge => {
                         return {
                             id: edge.node.id,
                             shortCode: edge.node.shortcode,
