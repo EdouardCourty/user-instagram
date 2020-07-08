@@ -1,22 +1,28 @@
 const axios = require("axios");
-const { normalizeUrl } = require("../src/util");
+const {normalizeUrl} = require("../src/util");
 
 /**
  * Gets the data from the GraphQL Instagram interface.
- * @param { string } username
- * @return { Promise<Object> }
+ * @param {string} username
+ * @return {Promise<Object>}
  */
 module.exports = (username) => {
   return new Promise(async (resolve,reject) => {
-    let link = normalizeUrl(username);
-    const GQL = await axios.get(link)
-        .catch(error => {
-          reject(error);
-        });
-    if(GQL) {
+    const REQUEST_PARAMETERS = {
+        method: "GET",
+        url: normalizeUrl(username),
+        headers: {
+            "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36",
+            "authority": "www.instagram.com",
+            "cache-control": "max-age=0"
+        }
+    };
+    const GQL = await axios(REQUEST_PARAMETERS)
+        .catch(reject);
+    if (GQL) {
         let user = GQL.data.graphql.user;
         resolve({
-            link: link.replace("/?__a=1", ""),
+            link: REQUEST_PARAMETERS.url.replace("/?__a=1", ""),
             id: user.id,
             biography: user.biography,
             subscribersCount: user.edge_followed_by.count,
