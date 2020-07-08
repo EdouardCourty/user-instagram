@@ -20,5 +20,8 @@
   "license": "MIT",
   "dependencies": {
     "axios": "^0.19.2"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
   }
 }
