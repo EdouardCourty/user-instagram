@@ -1,6 +1,6 @@
 {
   "name": "@edouardcourty/user-instagram",
-  "version": "2.0.9",
+  "version": "2.0.10",
   "description": "Get user data and feed content by scraping Instagram's user page. No OAuth needed.",
   "main": "index.js",
   "scripts": {
