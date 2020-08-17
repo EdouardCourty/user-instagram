@@ -1,6 +1,5 @@
 module.exports = {
   /**
-   * Bitch give me Regex, in case stoopid people use this module
    * @param string
    * @return string
    */
