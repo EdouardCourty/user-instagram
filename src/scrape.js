@@ -110,13 +110,13 @@ module.exports.getPostData = (shortcode) => {
                 areCommentsDisabled: media_data.comments_disabled,
                 takenAt: media_data.taken_at_timestamp,
                 likesCount: media_data.edge_media_preview_like.count,
-                location: {
+                location: media_data.location ? {
                     id: media_data.location.id,
                     hasPublicPage: media_data.location.has_public_page,
                     name: media_data.location.name,
                     slug: media_data.location.slug,
                     jsonName: media_data.location.address_json,
-                },
+                } : null,
                 owner: {
                     id: media_data.owner.id,
                     username: media_data.owner.username,
