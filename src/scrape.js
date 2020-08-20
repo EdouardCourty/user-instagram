@@ -83,6 +83,11 @@ module.exports.getUserData = (username) => {
   });
 };
 
+/**
+ * Using this a picture posted by a private won't work.
+ * @param {string} shortcode
+ * @returns {Promise<Object>}
+ */
 module.exports.getPostData = (shortcode) => {
     return new Promise(async (resolve, reject) => {
         const REQUEST_PARAMETERS = {
@@ -137,7 +142,7 @@ module.exports.getPostData = (shortcode) => {
                         isVideo: edge.node.is_video
                     }
                 }) : [],
-                comments : media_data.edge_media_to_parent_comment.edges.map(edge => {
+                comments: media_data.edge_media_to_parent_comment.edges.map(edge => {
                     return {
                         id: edge.node.id,
                         text: edge.node.text,
@@ -150,7 +155,19 @@ module.exports.getPostData = (shortcode) => {
                         },
                         likesCount: edge.node.edge_liked_by.count
                     }
-                })
+                }),
+                taggedUsers: (media_data.edge_media_to_tagged_user.edges) ? media_data.edge_media_to_tagged_user.edges.map(tag => {
+                    return {
+                        fullName: tag.node.user.full_name,
+                        id: tag.node.user.id,
+                        isVerified: tag.node.user.is_verified,
+                        username: tag.node.user.username,
+                        tagLocation: {
+                            x: tag.node.x,
+                            y: tag.node.y
+                        }
+                    }
+                }) : null
             });
         }
     });
