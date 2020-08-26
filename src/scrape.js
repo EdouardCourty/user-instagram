@@ -103,6 +103,7 @@ module.exports.getPostData = (shortcode) => {
           .catch(reject);
         if (GQL) {
             let media_data = GQL.data.graphql.shortcode_media;
+            let has_caption = media_data.edge_media_to_caption.edges.length > 0;
             resolve({
                 link: REQUEST_PARAMETERS.url.replace("/?__a=1", ""),
                 shortcode: media_data.shortcode,
@@ -110,7 +111,7 @@ module.exports.getPostData = (shortcode) => {
                 displayUrl: media_data.display_url,
                 isVideo: media_data.is_video,
                 wasCaptionEdited: media_data.caption_is_edited,
-                caption: media_data.edge_media_to_caption.edges[0].node.text,
+                caption: has_caption? media_data.edge_media_to_caption.edges[0].node.text : null,
                 commentsCount: media_data.edge_media_to_parent_comment.count,
                 areCommentsDisabled: media_data.comments_disabled,
                 takenAt: media_data.taken_at_timestamp,
