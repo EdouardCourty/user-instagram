@@ -7,7 +7,7 @@ module.exports = {
     if (!string.match(/instagram\.com\/[^\/]*/)) {
       string = `https://www.instagram.com/${string}`;
     }
-    return string += "/?__a=1";
+    return string += '/?__a=1';
   },
 
   /**
@@ -18,6 +18,6 @@ module.exports = {
     if (!string.match(/instagram\.com\/p\/[^\/]*/)) {
       string = `https://www.instagram.com/p/${string}`;
     }
-    return string += "/?__a=1";
+    return string += '/?__a=1';
   },
 };
