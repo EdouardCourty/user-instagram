@@ -1,5 +1,5 @@
-const axios = require("axios");
-const {normalizeUrl, normalizePostUrl} = require("../src/util");
+const axios = require('axios');
+const {normalizeUrl, normalizePostUrl} = require('../src/util');
 
 /**
  * Gets the data from the GraphQL Instagram interface.
@@ -9,12 +9,12 @@ const {normalizeUrl, normalizePostUrl} = require("../src/util");
 module.exports.getUserData = (username) => {
   return new Promise(async (resolve,reject) => {
     const REQUEST_PARAMETERS = {
-        method: "GET",
+        method: 'GET',
         url: normalizeUrl(username),
         headers: {
-            "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36",
-            "authority": "www.instagram.com",
-            "cache-control": "max-age=0"
+            'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36',
+            'authority': 'www.instagram.com',
+            'cache-control': 'max-age=0'
         }
     };
     const GQL = await axios(REQUEST_PARAMETERS)
@@ -22,7 +22,7 @@ module.exports.getUserData = (username) => {
     if (GQL) {
         let user = GQL.data.graphql.user;
         resolve({
-            link: REQUEST_PARAMETERS.url.replace("/?__a=1", ""),
+            link: REQUEST_PARAMETERS.url.replace('/?__a=1', ''),
             id: user.id,
             biography: user.biography,
             subscribersCount: user.edge_followed_by.count,
@@ -61,7 +61,7 @@ module.exports.getUserData = (username) => {
                     dimensions: edge.node.dimensions,
                     imageUrl: edge.node.display_url,
                     isVideo: edge.node.is_video,
-                    caption: hasCaption ? hasCaption.node.text : "",
+                    caption: hasCaption ? hasCaption.node.text : '',
                     commentsCount: edge.node.edge_media_to_comment.count,
                     commentsDisabled: edge.node.comments_disabled,
                     timestamp: edge.node.taken_at_timestamp,
@@ -91,12 +91,12 @@ module.exports.getUserData = (username) => {
 module.exports.getPostData = (shortcode) => {
     return new Promise(async (resolve, reject) => {
         const REQUEST_PARAMETERS = {
-            method: "GET",
+            method: 'GET',
             url: normalizePostUrl(shortcode),
             headers: {
-                "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36",
-                "authority": "www.instagram.com",
-                "cache-control": "max-age=0"
+                'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36',
+                'authority': 'www.instagram.com',
+                'cache-control': 'max-age=0'
             }
         };
         const GQL = await axios(REQUEST_PARAMETERS)
@@ -105,7 +105,7 @@ module.exports.getPostData = (shortcode) => {
             let media_data = GQL.data.graphql.shortcode_media;
             let has_caption = media_data.edge_media_to_caption.edges.length > 0;
             resolve({
-                link: REQUEST_PARAMETERS.url.replace("/?__a=1", ""),
+                link: REQUEST_PARAMETERS.url.replace('/?__a=1', ''),
                 shortcode: media_data.shortcode,
                 dimensions: media_data.dimensions,
                 displayUrl: media_data.display_url,

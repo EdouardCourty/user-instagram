@@ -1,4 +1,4 @@
-const {getUserData, getPostData} = require("./src/scrape");
+const {getUserData, getPostData} = require('./src/scrape');
 
 /**
  * @param username { String }

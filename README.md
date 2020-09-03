@@ -18,12 +18,12 @@ I tried to make this module user-friendly as much as I could. Just provide a use
 const userInstagram = require("user-instagram");
 
 // Gets informations about a user
-userInstagram("edouard_courty") // Same as getUserData()
+userInstagram('edouard_courty') // Same as getUserData()
   .then(console.log)
   .catch(console.error);
 
 // Gets information about a post
-userInstagram.getPostData("CD9EMe5sHP5")
+userInstagram.getPostData('CD9EMe5sHP5')
   .then(console.log)
   .catch(console.error)
 ```
