@@ -1,5 +1,5 @@
 {
-  "name": "@edouardcourty/user-instagram",
+  "name": "user-instagram",
   "version": "2.1.3",
   "description": "Get user data and feed content by scraping Instagram's user page. No OAuth needed.",
   "main": "index.js",
@@ -20,8 +20,5 @@
   "license": "MIT",
   "dependencies": {
     "axios": "^0.19.2"
-  },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/edouardcourty"
   }
 }
