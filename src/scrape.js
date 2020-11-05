@@ -133,7 +133,7 @@ module.exports.getPostData = (shortcode) => {
                     isVerified: media_data.owner.is_verified,
                 },
                 isAnAd: media_data.is_ad,
-                childrenPictures: media_data.edge_sidecar_to_children ? media_data.edge_sidecar_to_children.map(edge => {
+                childrenPictures: media_data.edge_sidecar_to_children && media_data.edge_sidecar_to_children.edges ? media_data.edge_sidecar_to_children.edges.map(edge => {
                     return {
                         id: edge.node.id,
                         shortcode: edge.node.shortcode,
