@@ -8,16 +8,16 @@ const {normalizeUrl, normalizePostUrl} = require('../src/util');
  */
 module.exports.getUserData = (username) => {
   return new Promise(async (resolve,reject) => {
+    const URL = normalizeUrl(username);
     const REQUEST_PARAMETERS = {
       method: 'GET',
-      url: normalizeUrl(username)
+      url: URL
     };
     const GQL = await axios(REQUEST_PARAMETERS)
       .catch(reject);
-    if (GQL) {
-      let user = GQL.data.graphql.user;
-      resolve({
-        link: REQUEST_PARAMETERS.url.replace('/?__a=1', ''),
+    const user = GQL.data.graphql.user;
+    resolve({
+        link: URL.replace('/?__a=1', ''),
         id: user.id,
         biography: user.biography,
         subscribersCount: user.edge_followed_by.count,
@@ -61,7 +61,6 @@ module.exports.getUserData = (username) => {
           }
         }) || []
       });
-    }
   });
 };
 
@@ -72,17 +71,17 @@ module.exports.getUserData = (username) => {
  */
 module.exports.getPostData = (shortcode) => {
   return new Promise(async (resolve, reject) => {
+    const URL = normalizePostUrl(shortcode);
     const REQUEST_PARAMETERS = {
       method: 'GET',
-      url: normalizePostUrl(shortcode)
+      url: URL
     };
     const GQL = await axios(REQUEST_PARAMETERS)
       .catch(reject);
-    if (GQL) {
-      let media_data = GQL.data.graphql.shortcode_media;
-      let has_caption = media_data.edge_media_to_caption.edges.length > 0;
-      resolve({
-        link: REQUEST_PARAMETERS.url.replace('/?__a=1', ''),
+    const media_data = GQL.data.graphql.shortcode_media;
+    const has_caption = media_data.edge_media_to_caption.edges.length > 0;
+    resolve({
+        link: URL.replace('/?__a=1', ''),
         shortcode: media_data.shortcode,
         dimensions: media_data.dimensions,
         displayUrl: media_data.display_url,
@@ -147,6 +146,5 @@ module.exports.getPostData = (shortcode) => {
           }
         }) : null
       });
-    }
   });
 };
