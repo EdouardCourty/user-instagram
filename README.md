@@ -36,7 +36,7 @@ The getUserData's JSON output will look like this:
   "id": "<userId>",
   "profileLink": "https://www.instagram.com/edouard_courty",
   "biography": "<Biography>",
-  "subscriberCount": 444,
+  "subscribersCount": 444,
   "subscribtions": 362,
   "postsCount": 27,
   "fullName": "Edouard Courty",
