@@ -1,7 +1,7 @@
 const axios = require('axios');
 const {normalizeUrl, normalizePostUrl} = require('../src/util');
-const UnableToFetchUserDataError = require('./Exceptions/UnableToFetchUserDataError');
-const UnableToFetchPostDataError = require('./Exceptions/UnableToFetchPostDataError');
+const UnableToFetchUserDataError = require('./Errors/UnableToFetchUserDataError');
+const UnableToFetchPostDataError = require('./Errors/UnableToFetchPostDataError');
 
 /**
  * Gets the data from the GraphQL Instagram interface.
