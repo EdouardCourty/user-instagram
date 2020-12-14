@@ -1,9 +1,10 @@
 # User-Instagram
 ![npm](https://img.shields.io/npm/dt/user-instagram) ![David](https://img.shields.io/david/EdouardCourty/user-instagram)
 <br>
-[![NPM](https://nodei.co/npm/user-instagram.png)](https://nodei.co/npm/user-instagram)  
+[![NPM](https://nodei.co/npm/user-instagram.png)](https://nodei.co/npm/user-instagram)
 
 ## Introduction
+Don't use the GitHub package version as it's outdated. Use [the NPM one](https://npmjs.com/package/user-instagram).  
 The aim of this module is to provide an easy way to retrieve a user's or a post data on Instagram.  
 This module is available on NPM.
 ```
