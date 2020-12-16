@@ -1,12 +1,10 @@
 const axios = require('axios');
 const {normalizeUrl, normalizePostUrl} = require('../src/util');
-const UnableToFetchUserDataError = require('./Errors/UnableToFetchUserDataError');
-const UnableToFetchPostDataError = require('./Errors/UnableToFetchPostDataError');
+const IncorectResponseError = require('./Errors/IncorrectResponseError');
 
 /**
  * Gets the data from the GraphQL Instagram interface.
  * @param {string} username
- * @throws UnableToFetchUserDataError
  * @return {Promise<Object>}
  */
 module.exports.getUserData = (username) => {
@@ -14,9 +12,18 @@ module.exports.getUserData = (username) => {
     const URL = normalizeUrl(username);
     const REQUEST_PARAMETERS = {
       method: 'GET',
-      url: URL
+      url: URL,
+      headers: {
+        'sec-ch-ua': `"Google Chrome";v="87", " Not;A Brand";v="99", "Chromium";v="87"`,
+        'user-agent': "Mozilla/5.0 (Macintosh; Intel Mac OS X 11_0_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36",
+        'sec-fetch-dest': 'document',
+        'sec-ch-ua-mobile': '?0'
+      }
     };
     axios(REQUEST_PARAMETERS).then(GQL => {
+      if (typeof GQL.data !== 'object') {
+        throw IncorectResponseError.fromType(typeof GQL.data);
+      }
       const user = GQL.data.graphql.user;
       resolve({
         link: URL.replace('/?__a=1', ''),
@@ -63,8 +70,9 @@ module.exports.getUserData = (username) => {
           }
         }) || []
       });
-    }).catch(() => {
-        reject(UnableToFetchUserDataError.fromUsername(username));
+    }).catch(e => {
+      if (e instanceof Error) reject(e);
+      else reject(new Error(e));
     });
   });
 };
@@ -83,6 +91,9 @@ module.exports.getPostData = (shortcode) => {
     };
     axios(REQUEST_PARAMETERS)
       .then(GQL => {
+        if (typeof GQL.data !== 'object') {
+          throw IncorectResponseError.fromType(typeof GQL.data);
+        }
         const media_data = GQL.data.graphql.shortcode_media;
         const has_caption = media_data.edge_media_to_caption.edges.length > 0;
         resolve({
@@ -151,9 +162,9 @@ module.exports.getPostData = (shortcode) => {
             }
           }) : null
         });
-      })
-      .catch(() => {
-        reject(UnableToFetchPostDataError.fromShortcode(shortcode));
-      });
+      }).catch(e => {
+      if (e instanceof Error) reject(e);
+      else reject(new Error(e));
+    });
   });
 };
