@@ -4,7 +4,7 @@
   "description": "Get user data and feed content by scraping Instagram's user page. No OAuth needed.",
   "main": "index.js",
   "scripts": {
-    "test": "node test/test.js"
+    "test": "mocha"
   },
   "keywords": [
     "Instagram",
@@ -19,6 +19,8 @@
   "author": "Edouard Courty",
   "license": "MIT",
   "dependencies": {
-    "axios": "^0.21.0"
+    "axios": "^0.21.0",
+    "chai": "^4.2.0",
+    "mocha": "^8.2.1"
   }
 }
