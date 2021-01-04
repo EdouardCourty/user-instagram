@@ -23,7 +23,7 @@ module.exports.getUserData = (username) => {
         id: user.id,
         biography: user.biography,
         subscribersCount: user.edge_followed_by.count,
-        subscribtions: user.edge_follow.count,
+        subscriptions: user.edge_follow.count,
         fullName: user.full_name,
         highlightCount: user.highlight_reel_count,
         isBusinessAccount: user.is_business_account,
