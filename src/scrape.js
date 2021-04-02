@@ -9,12 +9,13 @@ const UnableToFetchPostDataError = require('./Errors/UnableToFetchPostDataError'
  * @throws UnableToFetchUserDataError
  * @return {Promise<Object>}
  */
-module.exports.getUserData = (username) => {
+module.exports.getUserData = (username, reqOpts = {}) => {
   return new Promise(async (resolve,reject) => {
     const URL = normalizeUrl(username);
     const REQUEST_PARAMETERS = {
       method: 'GET',
-      url: URL
+      url: URL,
+      ...reqOpts
     };
     axios(REQUEST_PARAMETERS).then(GQL => {
       const user = GQL.data.graphql.user;
@@ -74,12 +75,13 @@ module.exports.getUserData = (username) => {
  * @param {string} shortcode
  * @returns {Promise<Object>}
  */
-module.exports.getPostData = (shortcode) => {
+module.exports.getPostData = (shortcode, reqOpts = {}) => {
   return new Promise(async (resolve, reject) => {
     const URL = normalizePostUrl(shortcode);
     const REQUEST_PARAMETERS = {
       method: 'GET',
-      url: URL
+      url: URL,
+      ...reqOpts
     };
     axios(REQUEST_PARAMETERS)
       .then(GQL => {
