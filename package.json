@@ -1,0 +1,26 @@
+{
+  "name": "user-instagram",
+  "version": "2.2.0",
+  "description": "Get user & post data without authentication",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/EdouardCourty/user-instagram.git"
+  },
+  "type": "module",
+  "keywords": [
+    "Instagram",
+    "Instagram API",
+    "Instagram user",
+    "Scrapping"
+  ],
+  "author": "Edouard Courty",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/EdouardCourty/user-instagram/issues"
+  },
+  "homepage": "https://github.com/EdouardCourty/user-instagram#readme",
+  "dependencies": {
+    "axios": "^0.21.1"
+  }
+}

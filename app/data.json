@@ -1,0 +1,4 @@
+{
+  "usernameUrlTemplate": "https://instagram.com/%USERNAME%/?__a=1",
+  "postUrlTemplate": "https://instagram.com/p/%SHORTCODE%/?__a=1"
+}
