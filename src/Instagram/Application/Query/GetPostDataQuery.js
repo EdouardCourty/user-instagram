@@ -2,4 +2,4 @@ class GetPostDataQuery {
 
 }
 
-module.exports = GetPostDataQuery;
+export default GetPostDataQuery;

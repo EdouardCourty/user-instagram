@@ -2,4 +2,4 @@ class GetUserDataQuery {
 
 }
 
-module.exports = GetUserDataQuery;
+export default GetUserDataQuery;

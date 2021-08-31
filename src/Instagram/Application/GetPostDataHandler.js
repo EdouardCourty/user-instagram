@@ -10,4 +10,4 @@ class GetPostDataHandler {
   }
 }
 
-module.exports = GetPostDataHandler;
+export default GetPostDataHandler;

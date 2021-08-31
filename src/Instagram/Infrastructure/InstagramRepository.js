@@ -29,4 +29,4 @@ class InstagramRepository {
   }
 }
 
-module.exports = InstagramRepository;
+export default InstagramRepository;

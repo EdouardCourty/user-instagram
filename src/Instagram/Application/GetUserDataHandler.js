@@ -10,4 +10,4 @@ class GetUserDataHandler {
   }
 }
 
-module.exports = GetUserDataHandler;
+export default GetUserDataHandler;
