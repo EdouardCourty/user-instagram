@@ -1,10 +1,10 @@
-import Media from './Media';
-
 class User {
   /** @type string */
   #username;
   /** @type string */
   #biography;
+  /** @type number */
+  #publicationsCount;
   /** @type number */
   #followersCount;
   /** @type string */
@@ -65,6 +65,7 @@ class User {
   constructor(
     username,
     biography,
+    publicationsCount,
     followersCount,
     externalUrl,
     followingCount,
@@ -96,6 +97,7 @@ class User {
   ) {
     this.#username = username;
     this.#biography = biography;
+    this.#publicationsCount = publicationsCount;
     this.#followersCount = followersCount;
     this.#followingCount = followingCount;
     this.#externalUrl = externalUrl;
@@ -128,6 +130,7 @@ class User {
 
   getUsername = () => this.#username;
   getBiography = () => this.#biography;
+  getPublicationsCount = () => this.#publicationsCount;
   getFollowersCount = () => this.#followersCount;
   getExternalUrl = () => this.#externalUrl;
   getFollowingCount = () => this.#followingCount;

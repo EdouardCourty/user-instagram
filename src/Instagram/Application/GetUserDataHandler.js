@@ -6,7 +6,7 @@ class GetUserDataHandler {
    * @param {GetUserDataQuery} getUserDataQuery
    */
   static handle(getUserDataQuery) {
-
+    return InstagramRepository.getUser(getUserDataQuery.getUserName());
   }
 }
 

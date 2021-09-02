@@ -7,19 +7,20 @@ class MediaType {
   static INSTAGRAM_TYPE_VIDEO = 'GraphVideo';
   static INASTAGRAM_TYPE_MULTIPLE_PICTURE = 'GraphSidecar';
 
-  #matching;
+  #value;
   
-  constructor() {
+  constructor(type) {
     const matching = {};
     matching[MediaType.INSTAGRAM_TYPE_PICTURE] = MediaType.TYPE_PICTURE;
     matching[MediaType.INSTAGRAM_TYPE_VIDEO] = MediaType.TYPE_VIDEO;
     matching[MediaType.INASTAGRAM_TYPE_MULTIPLE_PICTURE] = MediaType.TYPE_MULTIPLE_PICTURE;
-    this.#matching = matching;
+    if (!Object.keys(matching).includes(type)) {
+      throw new Error(`${type} is not a valid Media type.`);
+    }
+    this.#value = matching[type];
   }
 
-  get matching() {
-    return this.#matching;
-  }
+  getValue = () => this.#value;
 }
 
 export default MediaType;
