@@ -22,5 +22,19 @@
   "homepage": "https://github.com/EdouardCourty/user-instagram#readme",
   "dependencies": {
     "axios": "^0.21.1"
+  },
+  "scripts": {
+    "eslint": "node_modules/.bin/eslint .",
+    "unit-tests": "node_modules/.bin/jest tests"
+  },
+  "devDependencies": {
+    "@babel/eslint-parser": "^7.14.5",
+    "@babel/plugin-proposal-class-properties": "^7.14.5",
+    "@babel/plugin-proposal-private-methods": "^7.14.5",
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-react": "^7.25.1",
+    "jest": "^27.1.0"
   }
 }

@@ -1,5 +1,5 @@
 import InstagramRepository from '../Infrastructure/InstagramRepository';
-import GetPostDataQuery from '../Application/Query/GetPostDataQuery';
+import GetPostDataQuery from './Query/GetPostDataQuery';
 
 class GetPostDataHandler {
   /**

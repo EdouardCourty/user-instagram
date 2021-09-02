@@ -1,0 +1,18 @@
+{
+  "extends": "airbnb",
+  "parser": "@babel/eslint-parser",
+  "parserOptions": {
+    "babelOptions": {
+      "configFile": "./babel.config.json"
+    }
+  },
+  "rules": {
+    "lines-between-class-members": "off",
+    "comma-dangle": "off",
+    "max-len": "off",
+    "no-trailing-spaces": "off"
+  },
+  "env": {
+    "jest": true
+  }
+}

@@ -1,5 +1,5 @@
 import InstagramRepository from '../Infrastructure/InstagramRepository';
-import GetUserDataQuery from '../Application/Query/GetUserDataQuery'
+import GetUserDataQuery from './Query/GetUserDataQuery';
 
 class GetUserDataHandler {
   /**
