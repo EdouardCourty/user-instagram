@@ -1,9 +1,10 @@
+const axios = require('axios');
+
+const applicationData = require('../data.json');
+
 const CacheStorage = require('./CacheStorage');
 const NoSessionError = require('../../src/Instagram/Domain/errors/NoSessionError');
-
 const InstagramRepository = require('../../src/Instagram/Infrastructure/InstagramRepository');
-const applicationData = require('../data.json');
-const axios = require('axios');
 
 class BasicRequestHandler {
   static async handle(queryUrl) {

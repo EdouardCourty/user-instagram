@@ -24,7 +24,7 @@ class User {
   /** @type number */
   #highlightReelCount;
   /** @type number */
-  #isHidingLikesAndViewCount;
+  #isHidingLikesAndViewsCount;
   /** @type string */
   #id;
   /** @type boolean */
@@ -75,7 +75,7 @@ class User {
     hasGuides,
     hasChannel,
     highlightReelsCount,
-    isHidingLikesAndViewCount,
+    isHidingLikesAndViewsCount,
     id,
     isBusinessAccount,
     isProfessionalAccount,
@@ -107,7 +107,7 @@ class User {
     this.#hasGuides = hasGuides;
     this.#hasChannel = hasChannel;
     this.#highlightReelCount = highlightReelsCount;
-    this.#isHidingLikesAndViewCount = isHidingLikesAndViewCount;
+    this.#isHidingLikesAndViewsCount = isHidingLikesAndViewsCount;
     this.#id = id;
     this.#isBusinessAccount = isBusinessAccount;
     this.#isProfessionalAccount = isProfessionalAccount;
@@ -140,7 +140,7 @@ class User {
   hasGuides = () => this.#hasGuides;
   hasChannel = () => this.#hasChannel;
   getHighlightsReelsCount = () => this.#highlightReelCount;
-  isHidingLikesAndViewCount = () => this.#isHidingLikesAndViewCount;
+  isHidingLikesAndViewsCount = () => this.#isHidingLikesAndViewsCount;
   getId = () => this.#id;
   isBusinessAccount = () => this.#isBusinessAccount;
   isProfessionalAccount = () => this.#isProfessionalAccount;

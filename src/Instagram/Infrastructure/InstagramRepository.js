@@ -27,7 +27,7 @@ const InstagramGenericError = require('../Domain/errors/InstagramGenericError');
 const InstagramAuthenticationError = require('../Domain/errors/InstagramAuthenticationError');
 const PostNotFoundError = require('../Domain/errors/PostNotFoundError');
 const MediaVariant = require('../Domain/MediaVariant');
-const CommentOwner = require('../CommentOwner');
+const CommentOwner = require('../Domain/CommentOwner');
 const Owner = require('../Domain/Owner');
 
 class InstagramRepository {
@@ -39,7 +39,7 @@ class InstagramRepository {
 
     return new Promise((resolve, reject) => {
       BasicRequestHandler.handle(queryUrl).then((request) => {
-        if (typeof request.data == 'string' && request.data.includes('<!DOCTYPE html>')) {
+        if (typeof request.data === 'string' && request.data.includes('<!DOCTYPE html>')) {
           throw new RateLimitError();
         }
 
@@ -61,9 +61,10 @@ class InstagramRepository {
           rawPostData['shortcode'],
           new Dimensions(rawPostData['height'], rawPostData['width']),
           rawPostData['display_url'],
-          rawPostData['display_resources'].map((resource) => {
-            return new MediaVariant(resource['src'], new Dimensions(resource['config_height'], resource['config_width']))
-          }),
+          rawPostData['display_resources'].map((resource) => new MediaVariant(
+            resource['src'],
+            new Dimensions(resource['config_height'], resource['config_width'])
+          )),
           rawPostData['accessibility_caption'],
           isVideo,
           hasTaggedUsers
@@ -77,13 +78,13 @@ class InstagramRepository {
                 node['user']['is_verified'],
                 node['user']['profile_pic_url'],
                 node['user']['username']
-              )
+              );
             }) : [],
           hasCaption ? rawPostData['edge_media_to_caption']['edges'][0]['node']['text'] : null,
           rawPostData['like_and_view_counts_disabled'],
           rawPostData['edge_media_to_parent_comment']['count'],
-          hasComments ? rawPostData['edge_media_to_parent_comment']['edges'].map((edge) => {
-            edge = edge.node;
+          hasComments ? rawPostData['edge_media_to_parent_comment']['edges'].map((objectEdge) => {
+            const edge = objectEdge.node;
             const ownerData = edge['owner'];
             return new Comment(
               edge['id'],
@@ -97,8 +98,8 @@ class InstagramRepository {
               ),
               edge['edge_liked_by']['count'],
               edge['edge_threaded_comments']['count'] !== 0,
-              edge['edge_threaded_comments']['edges'].map((edge) => {
-                edge = edge.node;
+              edge['edge_threaded_comments']['edges'].map((objectEdge) => {
+                const edge = objectEdge.node;
                 return new Comment(
                   edge['id'],
                   edge['text'],
@@ -112,9 +113,9 @@ class InstagramRepository {
                   edge['edge_liked_by']['count'],
                   false,
                   []
-                )
+                );
               })
-            )
+            );
           }) : [],
           rawPostData['comments_disabled'],
           new Date(rawPostData['taken_at_timestamp'] * 1000),
@@ -157,10 +158,10 @@ class InstagramRepository {
                     node['user']['is_verified'],
                     node['user']['profile_pic_url'],
                     node['user']['username']
-                  )
+                  );
                 }) : [],
               node['accessibility_caption']
-            )
+            );
           }) : [],
           rawPostData['is_video'] ? rawPostData['has_audio'] : false,
           rawPostData['is_video'] ? rawPostData['video_view_count'] : null,
@@ -171,10 +172,9 @@ class InstagramRepository {
           return reject(error);
         }
         if (error.hasOwnProperty('response') && error.response.status === 404) {
-          reject(PostNotFoundError.fromShortcode(shortcode));
-        } else {
-          reject(new InstagramGenericError(error.message));
+          return reject(PostNotFoundError.fromShortcode(shortcode));
         }
+        return reject(new InstagramGenericError(error.message));
       });
     });
   }
@@ -188,7 +188,7 @@ class InstagramRepository {
 
     return new Promise((resolve, reject) => {
       BasicRequestHandler.handle(queryUrl).then((request) => {
-        if (typeof request.data == 'string' && request.data.includes('<!DOCTYPE html>')) {
+        if (typeof request.data === 'string' && request.data.includes('<!DOCTYPE html>')) {
           throw new RateLimitError();
         }
 
@@ -254,7 +254,7 @@ class InstagramRepository {
                     node['user']['is_verified'],
                     node['user']['profile_pic_url'],
                     node['user']['username']
-                  )
+                  );
                 }) : [],
               node['is_video'],
               node['accessibility_caption'],
@@ -284,10 +284,10 @@ class InstagramRepository {
                           node['user']['is_verified'],
                           node['user']['profile_pic_url'],
                           node['user']['username']
-                        )
+                        );
                       }) : [],
                     node['accessibility_caption']
-                  )
+                  );
                 }) : [],
               node['has_audio'],
               node['video_view_count'],
@@ -300,16 +300,15 @@ class InstagramRepository {
           return reject(error);
         }
         if (error.hasOwnProperty('response') && error.response.status === 404) {
-          reject(UserNotFoundError.fromUsername(username));
-        } else {
-          reject(new InstagramGenericError(error.message));
+          return reject(UserNotFoundError.fromUsername(username));
         }
+        return reject(new InstagramGenericError(error.message));
       });
     });
   }
 
   static async authenticate() {
-    const request = await axios.get(InstagramHelper.BASE_URL,  {
+    const request = await axios.get(InstagramHelper.BASE_URL, {
       headers: {
         'user-agent': InstagramHelper.DEFAULT_USER_AGENT
       }
@@ -331,19 +330,20 @@ class InstagramRepository {
 
     const [username, password] = [CacheStorage.get().get('username'), CacheStorage.get().get('password')];
 
-    const csrfToken = jsonData['config']['csrf_token'],
-      encryptedPassword = InstagramHelper.getEncryptedPasswordFromPassword(password);
+    const csrfToken = jsonData['config']['csrf_token'];
+    const encryptedPassword = InstagramHelper.getEncryptedPasswordFromPassword(password);
 
     const formParams = {
       'username': username,
       'enc_password': encryptedPassword
-    }, requestHeaders = {
+    };
+    const requestHeaders = {
       'cookie': `ig_cb=1; csrftoken=${csrfToken}`,
       'referer': InstagramHelper.BASE_URL,
       'x-csrftoken': csrfToken,
       'user-agent': InstagramHelper.DEFAULT_USER_AGENT,
       'content-type': 'application/x-www-form-urlencoded'
-    }
+    };
 
     const queryString = (new url.URLSearchParams(formParams)).toString();
 
@@ -365,23 +365,21 @@ class InstagramRepository {
             const session = new Session(sessionId, new Date(expiryDate));
             CacheStorage.get().set('session', session);
             return resolve();
-          } else {
-            return reject(new InstagramAuthenticationError('Unable to read the cookies. Try again.'));
           }
-        } else if (typeof response.data === 'object' && response.data.hasOwnProperty('error_type') && response.data['error_type'] === 'generic_request_error') {
-          return reject(new RateLimitError());
-        } else {
-          reject(new Error('Unknown error, please submit an issue on GitHub.'));
+          return reject(new InstagramAuthenticationError('Unable to read the cookies. Try again.'));
         }
+        if (typeof response.data === 'object' && response.data.hasOwnProperty('error_type') && response.data['error_type'] === 'generic_request_error') {
+          return reject(new RateLimitError());
+        }
+        return reject(new Error('Unknown error, please submit an issue on GitHub.'));
       }).catch((error) => {
         if (typeof error === 'object' && error.hasOwnProperty('response')
           && error.response.data.message === 'Please wait a few minutes before you try again.'
         ) {
           return reject(new TooManyLoginsError());
-        } else {
-          console.error(error);
         }
-      })
+        return new InstagramGenericError(`Unkown error, please submit an issue on GitHub with the following error message: ${error.message}`);
+      });
     });
   }
 }

@@ -1,5 +1,4 @@
 const InstagramRepository = require('../Infrastructure/InstagramRepository');
-const AuthenticationQuery = require('./Query/AuthenticationQuery');
 
 const CacheStorage = require('../../../app/services/CacheStorage');
 

@@ -1,5 +1,4 @@
 class InstagramHelper {
-
   static BASE_URL = 'https://www.instagram.com/';
   static AUTH_URL = 'https://www.instagram.com/accounts/login/ajax/';
   static DEFAULT_USER_AGENT = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.159 Safari/537.36';

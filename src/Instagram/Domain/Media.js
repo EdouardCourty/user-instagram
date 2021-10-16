@@ -74,7 +74,7 @@ class Media {
   getChildren = () => this.#children;
   hasAudio = () => this.#hasAudio;
   getViewsCount = () => this.#viewsCount;
-  videoUrl = () => this.#videoUrl;
+  getVideoUrl = () => this.#videoUrl;
 }
 
 module.exports = Media;

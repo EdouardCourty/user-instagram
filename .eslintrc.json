@@ -10,7 +10,15 @@
     "lines-between-class-members": "off",
     "comma-dangle": "off",
     "max-len": "off",
-    "no-trailing-spaces": "off"
+    "no-trailing-spaces": "off",
+    "dot-notation": "off",
+    "indent": "off",
+    "quote-props": "off",
+    "no-shadow": "off",
+    "prefer-destructuring": "off",
+    "no-prototype-builtins": "off",
+    "object-shorthand": "off",
+    "consistent-return": "off"
   },
   "env": {
     "jest": true
