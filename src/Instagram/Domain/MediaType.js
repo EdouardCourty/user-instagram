@@ -23,4 +23,4 @@ class MediaType {
   getValue = () => this.#value;
 }
 
-export default MediaType;
+module.exports = MediaType;

@@ -1,13 +1,13 @@
-import InstagramRepository from '../Infrastructure/InstagramRepository';
-import GetUserDataQuery from './Query/GetUserDataQuery';
+const InstagramRepository = require('../Infrastructure/InstagramRepository');
 
 class GetUserDataHandler {
   /**
    * @param {GetUserDataQuery} getUserDataQuery
+   * @returns Promise<User>
    */
   static handle(getUserDataQuery) {
     return InstagramRepository.getUser(getUserDataQuery.getUserName());
   }
 }
 
-export default GetUserDataHandler;
+module.exports = GetUserDataHandler;

@@ -33,4 +33,4 @@ class ChildMedia {
   getAccessibilityCaption = () => this.#accessibilityCaption;
 }
 
-export default ChildMedia;
+module.exports = ChildMedia;

@@ -16,4 +16,4 @@ class GetUserDataQuery {
   getUserName = () => this.#username;
 }
 
-export default GetUserDataQuery;
+module.exports = GetUserDataQuery;

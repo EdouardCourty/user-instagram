@@ -33,4 +33,4 @@ class TaggedUser {
   getUsername = () => this.#username;
 }
 
-export default TaggedUser;
+module.exports = TaggedUser;

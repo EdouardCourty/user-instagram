@@ -3,4 +3,4 @@ class UserNotFoundError extends Error {
   static fromUsername = (username) => new this(`No profile with ${username} as username could be found.`);
 }
 
-export default UserNotFoundError;
+module.exports = UserNotFoundError;

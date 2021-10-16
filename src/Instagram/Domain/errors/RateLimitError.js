@@ -4,4 +4,4 @@ class RateLimitError extends Error {
   }
 }
 
-export default RateLimitError;
+module.exports = RateLimitError;

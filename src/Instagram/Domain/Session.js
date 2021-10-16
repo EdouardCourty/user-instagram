@@ -1,20 +1,20 @@
 class Session {
   #id;
-  #expiresIn;
+  #expiryDate;
 
   /**
    * @param {string} id
-   * @param {number} expiresIn
+   * @param {Date} expiryDate
    */
-  constructor(id, expiresIn) {
+  constructor(id, expiryDate) {
     this.#id = id;
-    this.#expiresIn = expiresIn;
+    this.#expiryDate = expiryDate;
   }
 
   /** @return string */
   getId = () => this.#id;
-  /** @returns number */
-  getExpiresIn = () => this.#expiresIn;
+  /** @returns Date */
+  getExpiryDate = () => this.#expiryDate;
 }
 
-export default Session;
+module.exports = Session;

@@ -67,8 +67,8 @@ class User {
     biography,
     publicationsCount,
     followersCount,
-    externalUrl,
     followingCount,
+    externalUrl,
     fullName,
     hasArEffects,
     hasClips,
@@ -161,4 +161,4 @@ class User {
   getMedias = () => this.#medias;
 }
 
-export default User;
+module.exports = User;

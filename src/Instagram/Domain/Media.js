@@ -77,4 +77,4 @@ class Media {
   videoUrl = () => this.#videoUrl;
 }
 
-export default Media;
+module.exports = Media;

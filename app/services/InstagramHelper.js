@@ -21,4 +21,4 @@ class InstagramHelper {
   }
 }
 
-export default InstagramHelper;
+module.exports = InstagramHelper;

@@ -16,4 +16,4 @@ class GetPostDataQuery {
   getShortCode = () => this.#shortCode;
 }
 
-export default GetPostDataQuery;
+module.exports = GetPostDataQuery;

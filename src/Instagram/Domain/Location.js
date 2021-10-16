@@ -21,4 +21,4 @@ class Location {
   getSlug = () => this.#slug;
 }
 
-export default Location;
+module.exports = Location;

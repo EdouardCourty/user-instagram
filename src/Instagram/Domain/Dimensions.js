@@ -1,4 +1,4 @@
-import AspectRatioCalculator from '../../../app/services/AspectRatioCalculator';
+const AspectRatioCalculator = require('../../../app/services/AspectRatioCalculator');
 
 class Dimensions {
   /** @type number */
@@ -20,4 +20,4 @@ class Dimensions {
   getAspectRatio = (separator = ':') => AspectRatioCalculator.getAspectRatio(this.#height, this.#width, separator);
 }
 
-export default Dimensions;
+module.exports = Dimensions;

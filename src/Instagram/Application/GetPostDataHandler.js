@@ -1,13 +1,13 @@
-import InstagramRepository from '../Infrastructure/InstagramRepository';
-import GetPostDataQuery from './Query/GetPostDataQuery';
+const InstagramRepository = require('../Infrastructure/InstagramRepository');
 
 class GetPostDataHandler {
   /**
    * @param {GetPostDataQuery} getPostDataQuery
+   * @returns Promise<Post>
    */
   static handle(getPostDataQuery) {
-
+    return InstagramRepository.getPost(getPostDataQuery.getShortCode());
   }
 }
 
-export default GetPostDataHandler;
+module.exports = GetPostDataHandler;

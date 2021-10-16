@@ -33,4 +33,4 @@ class AspectRatioCalculator {
   }
 }
 
-export default AspectRatioCalculator;
+module.exports = AspectRatioCalculator;
