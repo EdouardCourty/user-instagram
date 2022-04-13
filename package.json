@@ -1,6 +1,6 @@
 {
   "name": "user-instagram",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Get user & post data without authentication",
   "main": "index.js",
   "repository": {
