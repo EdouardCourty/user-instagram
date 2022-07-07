@@ -6,8 +6,9 @@
 ## The end
 
 Thursday 07 2022.  
-Instagram's API changed a lot and I don't have the time to update and reverse-engineer everything again, I have no choice but to deprecatd this module.  
-If you want to become the official maintainer, feel free to open an issue and we'll get in touch.  
+Instagram's API & Authentication changed a lot and I don't have the time to update and reverse-engineer everything again.  
+I have no choice but to deprecate this module.  
+If you want to become the official maintainer, feel free to open an issue and we'll get in touch!  
 
 Thanks to the thousands of people that used this module through the years!  
 Big love from Paris!  
