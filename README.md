@@ -1,7 +1,16 @@
-# User Instagram
+# User Instagram - DEPRECATED
 
 [![Downloads](https://img.shields.io/npm/dt/user-instagram)](https://img.shields.io/david/EdouardCourty/user-instagram)
 [![Node.js CI](https://github.com/EdouardCourty/user-instagram/actions/workflows/node.js.yml/badge.svg)](https://github.com/EdouardCourty/user-instagram/actions/workflows/node.js.yml)
+
+## The end
+
+Thursday 07 2022.  
+Instagram's API changed a lot and I don't have the time to update and reverse-engineer everything again, I have no choice but to deprecatd this module.  
+If you want to become the official maintainer, feel free to open an issue and we'll get in touch.  
+
+Thanks to the thousands of people that used this module through the years!  
+Big love from Paris!  
 
 ## Usage
 
