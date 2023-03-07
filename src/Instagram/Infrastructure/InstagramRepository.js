@@ -378,7 +378,7 @@ class InstagramRepository {
         ) {
           return reject(new TooManyLoginsError());
         }
-        return reject(new InstagramGenericError(`Unkown error, please submit an issue on GitHub with the following error message: ${error.message}`));
+        return reject(new InstagramGenericError(`Unknown error, please submit an issue on GitHub with the following error message: ${error.message}`));
       });
     });
   }
