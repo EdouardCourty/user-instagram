@@ -44,7 +44,7 @@ Couple of issues were submitted about this problem and it's the main reason why 
 ### Authentication
 
 The `authenticate` method takes two mandatory parameters: `username` and `password`.  
-A good way to keep these strings safe is storing them in an uncommited file in your repo like some `instagram_config.json` file structured like the following:
+A good way to keep these strings safe is storing them in an uncommitted file in your repo like some `instagram_config.json` file structured like the following:
 ```json
 {
   "username": "your username here",
