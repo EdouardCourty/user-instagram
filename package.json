@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/EdouardCourty/user-instagram#readme",
   "dependencies": {
-    "axios": "^0.21.1",
+    "axios": "^1.6.0",
     "cookie-parser": "^1.4.5"
   },
   "scripts": {
